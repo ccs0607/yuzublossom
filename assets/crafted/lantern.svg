@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 144" fill="none">
+  <defs>
+    <linearGradient
+      id="paper"
+      x1="50"
+      y1="16"
+      x2="50"
+      y2="113"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#fae6b4" />
+      <stop offset=".56" stop-color="#dfad65" />
+      <stop offset="1" stop-color="#c07d3b" />
+    </linearGradient>
+    <radialGradient id="fire">
+      <stop stop-color="#fff5cd" />
+      <stop offset="1" stop-color="#ffc56d" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <path d="M16 28Q50 7 84 28L76 108Q50 119 24 108Z" fill="url(#paper)" />
+  <path
+    d="M16 28Q50 38 84 28M24 108Q50 99 76 108M35 23l6 86m24-86-6 86"
+    stroke="#9d632f"
+    stroke-opacity=".45"
+    stroke-width=".8"
+  />
+  <ellipse cx="50" cy="107" rx="26" ry="6" fill="#87502a" />
+  <ellipse cx="50" cy="103" rx="24" ry="19" fill="url(#fire)" />
+  <path d="M50 111c-11-7-2-15 1-20 0 8 9 12-1 20Z" fill="#fff0ae" />
+  <path d="m34 112 5 13h22l5-13" stroke="#d4b58b" />
+  <path d="M41 129h18" stroke="#d4b58b" stroke-width="2" />
+</svg>

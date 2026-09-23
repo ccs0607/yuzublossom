@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 340" fill="none">
+  <g stroke="#c9aa6c" stroke-width="1.2">
+    <path
+      d="M20 325C144 256 198 183 385 54m-175 134c25-67 74-92 110-105m-171 165c77 10 146-12 210-60m-81-83c-9-34 3-70 22-99m-35 210c55 16 115 5 151-27"
+    />
+    <path
+      d="M301 106c-12-41-2-54 22-61 2 31-5 51-22 61Zm-78 69c-37-5-52-27-54-54 36 10 56 30 54 54Zm87 47c26-37 53-37 76-29-23 27-47 39-76 29Zm-125 27c23-32 50-30 69-24-22 23-41 31-69 24Z"
+      fill="#c9aa6c"
+      fill-opacity=".08"
+    />
+  </g>
+  <g fill="#d9b873">
+    <g id="f">
+      <ellipse cx="386" cy="50" rx="8" ry="12" transform="rotate(-30 386 50)" />
+      <ellipse cx="403" cy="53" rx="8" ry="12" transform="rotate(45 403 53)" />
+      <ellipse cx="386" cy="69" rx="8" ry="12" transform="rotate(45 386 69)" />
+      <ellipse cx="402" cy="70" rx="8" ry="12" transform="rotate(-30 402 70)" />
+      <circle cx="394" cy="61" r="3" fill="#846337" />
+    </g>
+    <use href="#f" transform="translate(-74 31) scale(.95)" />
+    <use href="#f" transform="translate(85 75) scale(.76)" />
+    <use href="#f" transform="translate(155 139) scale(.55)" />
+    <use href="#f" transform="translate(-55 196) scale(.67)" />
+    <use href="#f" transform="translate(18 33) scale(.63)" />
+  </g>
+  <g fill="#d9b873" opacity=".5">
+    <ellipse cx="446" cy="101" rx="4" ry="8" transform="rotate(32 446 101)" />
+    <ellipse cx="379" cy="265" rx="4" ry="8" transform="rotate(65 379 265)" />
+    <ellipse cx="217" cy="71" rx="4" ry="7" transform="rotate(-30 217 71)" />
+  </g>
+</svg>

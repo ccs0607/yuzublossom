@@ -1,90 +1,578 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#050916">
-  <title>月满人间 · 中秋贺卡</title>
-  <meta name="description" content="一张会苏醒的中秋互动贺卡：星河、明月、嫦娥、桂花、天灯与祝福。">
-  <link rel="preload" href="assets/generated/final_scene.webp" as="image">
-  <link rel="preload" href="assets/generated/moon.webp" as="image">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <canvas id="fx" aria-hidden="true"></canvas>
-  <main id="app" class="phase-stars">
-    <section id="scene" class="scene" aria-label="中秋互动场景">
-      <div class="sky"></div>
-      <div class="aurora aurora-a"></div>
-      <div class="aurora aurora-b"></div>
-
-      <div id="moonWrap" class="moon-wrap interactive-moon" role="button" aria-label="轻触明月" tabindex="0">
-        <div class="moon-halo moon-halo-a"></div>
-        <div class="moon-halo moon-halo-b"></div>
-        <img src="assets/generated/moon.webp" class="moon" alt="明月">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#101c2b" />
+    <title>月满人间 · 把思念寄给你</title>
+    <meta
+      name="description"
+      content="今夜，以月光为笺。赏一轮明月，放一盏心灯，写一封属于你的中秋来信。"
+    />
+    <link rel="icon" href="assets/crafted/moon-seal.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="assets/generated/final_scene.webp"
+      as="image"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-mood="moon">
+    <svg
+      class="icon-library"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M4 12h15m-6-6 6 6-6 6" />
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24">
+          <path d="M20 15.2A8.8 8.8 0 0 1 8.8 4 8.8 8.8 0 1 0 20 15.2Z" />
+        </symbol>
+        <symbol id="i-flower" viewBox="0 0 24 24">
+          <path
+            d="M12 11C0-1 1 15 11 12 0 24 16 24 12 13 24 24 24 8 13 12 24 0 8 0 12 11Z"
+          />
+          <circle cx="12" cy="12" r="1.5" />
+        </symbol>
+        <symbol id="i-lantern" viewBox="0 0 24 24">
+          <path
+            d="M6 5q6-4 12 0l-1.5 13h-9ZM7 6q5 2 10 0M8 17q4-2 8 0m-6 2 1 3h2l1-3"
+          />
+        </symbol>
+        <symbol id="i-star" viewBox="0 0 24 24">
+          <path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M6 18 18 6" />
+        </symbol>
+        <symbol id="i-volume" viewBox="0 0 24 24">
+          <path
+            d="m11 4-6 5H2v6h3l6 5Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"
+          />
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24">
+          <path d="M12 3v12m-5-5 5 5 5-5M4 15v6h16v-6" />
+        </symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24">
+          <path
+            d="M12 20S2 14 2 8a5 5 0 0 1 10-1 5 5 0 0 1 10 1c0 6-10 12-10 12Z"
+          />
+        </symbol>
+        <symbol id="i-refresh" viewBox="0 0 24 24">
+          <path d="M20 8a9 9 0 1 0 1 7M20 3v6h-6" />
+        </symbol>
+        <symbol id="i-full" viewBox="0 0 24 24">
+          <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+        </symbol>
+      </defs>
+    </svg>
+    <header class="site-header" id="siteHeader">
+      <a class="brand" href="#home" aria-label="月满人间，返回首页"
+        ><img
+          src="assets/crafted/moon-seal.svg"
+          width="45"
+          height="45"
+          alt=""
+        /><span>月满人间<small>A LETTER FROM THE MOON</small></span></a
+      >
+      <nav class="main-nav" aria-label="主导航">
+        <a href="#home" class="current">月下相逢</a
+        ><a href="#moments">人间好时节</a><a href="#poetry">月色入诗</a>
+      </nav>
+      <div class="header-actions">
+        <button
+          class="sound-button"
+          id="soundBtn"
+          aria-label="开启月夜声音"
+          aria-pressed="false"
+        >
+          <span class="sound-bars" aria-hidden="true"
+            ><i></i><i></i><i></i><i></i></span
+          ><span class="sound-label">声音关闭</span></button
+        ><button class="header-wish" data-open-wish>
+          写下心愿 <svg><use href="#i-arrow" /></svg>
+        </button>
       </div>
+    </header>
 
-      <img src="assets/generated/clouds_far.webp" class="cloud cloud-far" alt="">
-      <img src="assets/generated/clouds_near.webp" class="cloud cloud-near" alt="">
-
-      <img src="assets/generated/chang_e_silhouette.webp" class="chang-e-silhouette" alt="嫦娥轮廓">
-      <img src="assets/generated/chang_e_full.webp" class="chang-e-full" alt="嫦娥">
-      <div class="final-scene-wrap">
-        <img src="assets/generated/final_scene.webp" class="final-scene" alt="月下嫦娥与中秋夜景">
-      </div>
-      <div class="left-veil"></div>
-
-      <img src="assets/generated/ribbons.webp" class="ribbons" alt="">
-      <img src="assets/generated/petals.webp" class="petal-art petal-art-a" alt="">
-      <img src="assets/generated/petals.webp" class="petal-art petal-art-b" alt="">
-
-      <section class="title-stage" aria-label="中秋祝福">
-        <p class="eyebrow">八月十五 · 月满人间</p>
-        <div class="title-reveal">
-          <img src="assets/generated/title.webp" class="title-art" alt="中秋">
+    <main>
+      <section class="hero" id="home" aria-labelledby="heroTitle">
+        <div class="scene-world" id="sceneWorld" aria-hidden="true">
+          <div class="scene-art" id="sceneArt">
+            <img
+              id="sceneImage"
+              class="scene-image"
+              src="assets/generated/final_scene.webp"
+              width="1672"
+              height="941"
+              alt=""
+              fetchpriority="high"
+            />
+          </div>
+          <div class="scene-tint"></div>
+          <div class="scene-shade"></div>
+          <div class="scene-grain"></div>
+          <canvas id="skyCanvas"></canvas>
+          <div id="lanternField" class="lantern-field"></div>
         </div>
-        <p class="blessing">但愿人长久，千里共婵娟</p>
+        <div class="hero-inner">
+          <p class="eyebrow hero-enter">
+            <span></span> 八月十五 · 一年一度的温柔相逢
+          </p>
+          <h1 id="heroTitle" class="hero-enter">
+            月满人间<span>此刻，共婵娟。</span>
+          </h1>
+          <p class="hero-description hero-enter">
+            把说不出口的思念，交给月光。<br />无论相隔多远，今夜，我们望着同一轮月亮。
+          </p>
+          <div class="hero-actions hero-enter">
+            <button class="button button-gold" data-open-wish>
+              <svg><use href="#i-lantern" /></svg>放一盏心灯<svg
+                class="end-arrow"
+              >
+                <use href="#i-arrow" />
+              </svg></button
+            ><a class="text-link" href="#moments">慢慢赏月 <span>↘</span></a>
+          </div>
+          <div class="hero-note hero-enter">
+            <span class="tiny-moon"></span>
+            <p>
+              愿花长好，月长圆，人长久。<small
+                >MAY WE SHARE THE BEAUTY OF THIS MOON.</small
+              >
+            </p>
+          </div>
+        </div>
+        <button
+          id="moonHotspot"
+          class="moon-hotspot"
+          aria-label="轻触明月，唤起月光涟漪"
+        >
+          <span class="hotspot-ring"
+            ><svg><use href="#i-star" /></svg></span
+          ><span class="hotspot-label"
+            >轻触明月<small>TOUCH THE MOON</small></span
+          >
+        </button>
+        <div class="scene-verse" aria-hidden="true">
+          海上生明月<span>天涯共此时</span>
+        </div>
+        <div class="hero-bottom">
+          <a href="#moments" class="scroll-cue"
+            ><span class="scroll-line"></span>循着月光，往下看</a
+          >
+          <div class="scene-controls">
+            <span class="control-label">今夜的月色</span>
+            <div class="mood-switch" role="group" aria-label="选择月夜氛围">
+              <button data-mood="moon" class="selected" aria-pressed="true">
+                <svg><use href="#i-moon" /></svg>澄月</button
+              ><button data-mood="osmanthus" aria-pressed="false">
+                <svg><use href="#i-flower" /></svg>桂雨</button
+              ><button data-mood="lantern" aria-pressed="false">
+                <svg><use href="#i-lantern" /></svg>灯海
+              </button>
+            </div>
+            <button
+              id="immerseBtn"
+              class="icon-button immerse-button"
+              aria-label="进入沉浸赏月"
+              title="沉浸赏月"
+            >
+              <svg><use href="#i-full" /></svg>
+            </button>
+          </div>
+        </div>
+        <button id="exitImmerseBtn" class="exit-immerse">
+          退出赏月 <span>Esc</span>
+        </button>
+        <p id="sceneHint" class="scene-hint" role="status"></p>
       </section>
 
-      <div id="narration" class="narration">今夜，从一片安静的黑开始。</div>
+      <section
+        class="moments section-shell"
+        id="moments"
+        aria-labelledby="momentsTitle"
+      >
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">LITTLE RITUALS, LASTING MEMORIES</p>
+            <h2 id="momentsTitle">月色正好，<em>做些温柔的小事。</em></h2>
+          </div>
+          <p class="section-aside">
+            让团圆有仪式，让思念有回音。<br />属于你的中秋，从这一刻开始。
+          </p>
+        </div>
+        <div class="ritual-grid">
+          <button class="ritual-card ritual-wish reveal" data-open-wish>
+            <div class="ritual-art">
+              <span class="art-orbit"></span
+              ><img
+                class="drawn-lantern lantern-one"
+                src="assets/crafted/lantern.svg"
+                alt=""
+                width="100"
+                height="144"
+              /><img
+                class="drawn-lantern lantern-two"
+                src="assets/crafted/lantern.svg"
+                alt=""
+                width="100"
+                height="144"
+              /><span class="art-star star-a">✧</span
+              ><span class="art-star star-b">✦</span>
+            </div>
+            <div class="ritual-copy">
+              <span class="item-number">01 / MAKE A WISH</span>
+              <h3>一盏心灯，寄远方</h3>
+              <p>把牵挂写进灯里，让月光替你送达。</p>
+              <span class="card-action"
+                >放飞我的心愿 <svg><use href="#i-arrow" /></svg
+              ></span>
+            </div>
+          </button>
+          <button class="ritual-card ritual-flower reveal" id="flowerRitual">
+            <div class="ritual-art">
+              <img
+                class="drawn-branch"
+                src="assets/crafted/osmanthus.svg"
+                alt=""
+                width="520"
+                height="340"
+              /><span class="flower-caption">桂子月中落</span>
+            </div>
+            <div class="ritual-copy">
+              <span class="item-number">02 / A MOMENT OF WONDER</span>
+              <h3>一场桂雨，落心间</h3>
+              <p>借一缕清香，留住秋天的片刻温柔。</p>
+              <span class="card-action"
+                >接住这场桂花雨 <svg><use href="#i-arrow" /></svg
+              ></span>
+            </div>
+          </button>
+          <button class="ritual-card ritual-letter reveal" id="letterRitual">
+            <div class="ritual-art">
+              <div class="paper-envelope">
+                <div class="envelope-letter">
+                  见字如晤<br /><span>愿你心上无风霜</span>
+                </div>
+                <span class="envelope-flap"></span
+                ><span class="envelope-seal">月</span>
+              </div>
+              <span class="art-star letter-star">✧</span>
+            </div>
+            <div class="ritual-copy">
+              <span class="item-number">03 / SEND A LITTLE LOVE</span>
+              <h3>一封月信，赠予你</h3>
+              <p>写一张专属贺卡，把此刻的月色收藏。</p>
+              <span class="card-action"
+                >制作中秋来信 <svg><use href="#i-arrow" /></svg
+              ></span>
+            </div>
+          </button>
+        </div>
+      </section>
 
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-mark">月</span>
-          <span>月满人间<small>MID-AUTUMN NIGHT</small></span>
+      <section
+        class="poetry section-shell"
+        id="poetry"
+        aria-labelledby="poetryTitle"
+      >
+        <div class="poetry-orbit" aria-hidden="true"></div>
+        <div class="poetry-heading reveal">
+          <p class="eyebrow">WORDS UNDER THE SAME MOON</p>
+          <h2 id="poetryTitle">古人的月亮，<br />也照着今天的我们。</h2>
+          <p>有些心意，早已被写成了诗。</p>
         </div>
-        <div class="top-actions">
-          <button id="soundBtn" class="glass-btn" aria-pressed="false">♫ 氛围</button>
-          <button id="skipBtn" class="glass-btn">跳过开场</button>
-          <button id="replayBtn" class="glass-btn hidden">重播</button>
+        <div class="poem-area reveal">
+          <div class="poem-topline">
+            <span>月色入诗</span><span id="poemIndex">01 / 05</span>
+          </div>
+          <blockquote id="poemQuote">
+            <p id="poemText">但愿人长久，<br />千里共婵娟。</p>
+            <cite id="poemAuthor">宋 · 苏轼《水调歌头》</cite>
+          </blockquote>
+          <div class="poem-bottomline">
+            <button class="poem-next" id="nextPoem">
+              <svg><use href="#i-refresh" /></svg> 再读一首</button
+            ><button class="save-poem" id="savePoem" aria-pressed="false">
+              <svg><use href="#i-heart" /></svg><span>收藏这句月光</span>
+            </button>
+          </div>
+          <p id="savedPoemNote" class="saved-poem-note">
+            收藏的诗句会留在这台设备，也可以写进你的月信。
+          </p>
         </div>
-      </header>
+      </section>
+      <section class="closing section-shell reveal">
+        <img src="assets/crafted/moon-seal.svg" width="60" height="60" alt="" />
+        <p>月亮只有一个，思念却有万千。</p>
+        <h2>愿你所念之人，<em>都在团圆里。</em></h2>
+        <button class="text-link" data-open-wish>
+          把这句祝福，送给心里的人 <svg><use href="#i-arrow" /></svg>
+        </button>
+      </section>
+    </main>
+    <footer class="site-footer section-shell">
+      <a class="footer-brand" href="#home"
+        >月满人间<span>MID-AUTUMN, TOGETHER.</span></a
+      >
+      <p>以月光为笺，以思念为墨。</p>
+      <button id="replayBtn">
+        重温月夜序幕 <svg><use href="#i-refresh" /></svg>
+      </button>
+    </footer>
 
-      <aside id="wishPanel" class="wish-panel">
-        <div class="wish-heading">
-          <div><span class="wish-kicker">MOONLIGHT WISH</span><h2>月下祈愿</h2></div>
-          <button id="collapseBtn" class="icon-btn" aria-label="收起祈愿面板">⌄</button>
+    <dialog
+      id="introDialog"
+      class="moon-prelude"
+      aria-label="月满人间 · 月夜序幕"
+    >
+      <div class="prelude-night" aria-hidden="true"></div>
+      <div class="prelude-atmosphere" aria-hidden="true"></div>
+      <div class="prelude-composition" aria-hidden="true">
+        <div class="prelude-moon-anchor">
+          <div class="prelude-moon-rise">
+            <div class="prelude-moon-glow"></div>
+            <img
+              class="prelude-moon"
+              data-src="assets/generated/moon.webp"
+              width="1254"
+              height="1254"
+              alt=""
+            />
+          </div>
         </div>
-        <p>写下一句心愿，让它顺着月光缓缓升起。</p>
-        <div class="wish-row">
-          <input id="wishInput" maxlength="18" autocomplete="off" placeholder="愿所念之人，岁岁平安">
-          <button id="wishBtn" class="gold-btn">放飞天灯</button>
+        <div class="prelude-cloud prelude-cloud-far">
+          <img
+            data-src="assets/generated/clouds_far.webp"
+            width="1672"
+            height="941"
+            alt=""
+          />
         </div>
-        <div class="modes" aria-label="月夜氛围">
-          <button data-mode="moon" class="mode active"><i>✦</i>澄月</button>
-          <button data-mode="osmanthus" class="mode"><i>❀</i>桂雨</button>
-          <button data-mode="lantern" class="mode"><i>◇</i>灯海</button>
-          <button id="touchMoonBtn" class="mode"><i>☾</i>触月</button>
+        <div class="prelude-figure-anchor">
+          <img
+            class="prelude-figure"
+            data-src="assets/generated/chang_e_full.webp"
+            width="941"
+            height="1672"
+            alt=""
+          />
         </div>
-      </aside>
-
-      <button id="wishChip" class="wish-chip hidden">✦ 写下心愿</button>
-      <div id="tip" class="tip">轻点夜空，星河会回应你</div>
-      <div id="lanternField" class="lantern-field" aria-hidden="true"></div>
-      <div id="petalField" class="petal-field" aria-hidden="true"></div>
-      <div id="toast" class="toast"></div>
-    </section>
-  </main>
-  <script src="app.js"></script>
-</body>
+        <div class="prelude-cloud prelude-cloud-near">
+          <img
+            data-src="assets/generated/clouds_near.webp"
+            width="1672"
+            height="941"
+            alt=""
+          />
+        </div>
+        <div class="prelude-ribbon">
+          <img
+            data-src="assets/generated/ribbons.webp"
+            width="1672"
+            height="941"
+            alt=""
+          />
+        </div>
+        <div class="prelude-title">
+          <p>八月十五 · 月满人间</p>
+          <div class="prelude-calligraphy">
+            <img
+              data-src="assets/generated/title.webp"
+              width="1448"
+              height="1086"
+              alt=""
+            />
+          </div>
+          <span>愿花长好，月长圆，人长久。</span
+          ><small>A NIGHT TO REMEMBER</small>
+        </div>
+      </div>
+      <canvas id="introCanvas" aria-hidden="true"></canvas>
+      <div class="prelude-chrome">
+        <div class="prelude-brand">
+          <img
+            src="assets/crafted/moon-seal.svg"
+            width="38"
+            height="38"
+            alt=""
+          /><span>月满人间<small>THE MOONLIT PRELUDE</small></span>
+        </div>
+        <div class="prelude-actions">
+          <button
+            id="introSoundBtn"
+            aria-pressed="false"
+            aria-label="开启月夜声音"
+          >
+            <svg><use href="#i-volume" /></svg><span>声音关闭</span></button
+          ><button id="skipBtn" autofocus>跳过序幕 <span>↗</span></button>
+        </div>
+        <div class="prelude-caption">
+          <span id="introChapter">序 · 星河</span>
+          <p id="introNarration" role="status">今夜，从一片星光开始。</p>
+          <div class="prelude-progress" aria-hidden="true">
+            <i id="introProgress"></i>
+          </div>
+          <small>月光为序 · 思念成章</small>
+        </div>
+      </div>
+    </dialog>
+    <dialog id="wishDialog" class="wish-dialog" aria-labelledby="wishTitle">
+      <div class="dialog-layout">
+        <div class="dialog-art">
+          <img
+            src="assets/crafted/lantern.svg"
+            class="dialog-lantern"
+            alt=""
+            width="100"
+            height="144"
+          /><span class="dialog-art-moon"></span>
+          <p>心有所念<br />月有所圆</p>
+          <small>A WISH, A LIGHT, A LITTLE LOVE.</small>
+        </div>
+        <div class="dialog-content">
+          <button
+            class="dialog-close icon-button"
+            data-close-dialog
+            aria-label="关闭心愿窗口"
+          >
+            <svg><use href="#i-close" /></svg>
+          </button>
+          <p class="eyebrow">LET YOUR WISH FIND ITS WAY</p>
+          <h2 id="wishTitle">把心事，说给月亮听。</h2>
+          <div class="dialog-tabs" role="tablist" aria-label="祝福方式">
+            <button
+              id="lanternTab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="lanternPanel"
+              tabindex="0"
+            >
+              放一盏心灯</button
+            ><button
+              id="letterTab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="letterPanel"
+              tabindex="-1"
+            >
+              写一封月信
+            </button>
+          </div>
+          <div id="lanternPanel" role="tabpanel" aria-labelledby="lanternTab">
+            <form id="wishForm">
+              <label for="wishInput">今夜，你的心愿是</label>
+              <div class="wish-input-wrap">
+                <textarea
+                  id="wishInput"
+                  rows="3"
+                  maxlength="36"
+                  placeholder="愿所念之人，岁岁平安。"
+                ></textarea
+                ><span id="wishLength">0 / 36</span>
+              </div>
+              <div class="wish-presets">
+                <button type="button" data-wish="愿所念之人，岁岁平安。">
+                  岁岁平安</button
+                ><button
+                  type="button"
+                  data-wish="愿此后每个中秋，都有你在身旁。"
+                >
+                  长久相伴</button
+                ><button type="button" data-wish="愿所有期待，都奔向圆满。">
+                  万事圆满
+                </button>
+              </div>
+              <button
+                class="button button-gold launch-button"
+                type="submit"
+                id="wishBtn"
+              >
+                <svg><use href="#i-lantern" /></svg>让心愿随灯火升起<svg
+                  class="end-arrow"
+                >
+                  <use href="#i-arrow" />
+                </svg>
+              </button>
+              <p class="wish-count" id="wishCount">
+                一盏灯，也是一份温柔的期许。
+              </p>
+            </form>
+            <div class="wish-history" id="wishHistory" hidden>
+              <span>我寄给月亮的心事</span>
+              <ul id="wishHistoryList"></ul>
+            </div>
+          </div>
+          <div
+            id="letterPanel"
+            role="tabpanel"
+            aria-labelledby="letterTab"
+            hidden
+          >
+            <form id="letterForm">
+              <div class="letter-fields">
+                <div>
+                  <label for="recipientInput">寄给</label
+                  ><input
+                    id="recipientInput"
+                    maxlength="12"
+                    placeholder="心里牵挂的人"
+                  />
+                </div>
+                <div>
+                  <label for="senderInput">落款</label
+                  ><input
+                    id="senderInput"
+                    maxlength="12"
+                    placeholder="你的名字"
+                  />
+                </div>
+              </div>
+              <label for="letterInput">月光替你捎去的话</label
+              ><textarea
+                id="letterInput"
+                rows="3"
+                maxlength="72"
+                placeholder="愿花长好，月长圆，人长久。"
+              ></textarea
+              ><button type="button" class="use-poem" id="usePoem">
+                写入当前诗句 <span>↗</span></button
+              ><button
+                type="submit"
+                class="button button-gold launch-button"
+                id="previewLetter"
+              >
+                预览我的月信<svg class="end-arrow"><use href="#i-arrow" /></svg>
+              </button>
+            </form>
+            <div class="letter-preview" id="letterPreview" hidden>
+              <img id="cardPreview" alt="你的专属中秋祝福卡预览" />
+              <div class="preview-actions">
+                <button class="text-link" id="editLetter">修改内容</button
+                ><button class="button button-gold" id="downloadCard">
+                  <svg><use href="#i-download" /></svg>保存贺卡
+                </button>
+              </div>
+              <p>保存为图片，让祝福去往更远的地方。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      ><p class="noscript-note">
+        开启 JavaScript，即可放飞天灯、切换月色与制作专属贺卡。
+      </p></noscript
+    >
+    <script src="intro.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
 </html>
