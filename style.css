@@ -35,7 +35,8 @@ img{display:block}
 .cloud-far{left:-15%;top:20%;width:126vw;opacity:0;transform:translateX(-8vw) scale(.92)}
 .cloud-near{right:-18%;top:31%;width:130vw;opacity:0;transform:translateX(10vw) scale(1.02)}
 .chang-e-silhouette{position:absolute;z-index:10;right:10%;bottom:2%;height:min(78vh,820px);width:auto;opacity:0;transform:translateY(46px) scale(.92);filter:blur(10px) brightness(.72) drop-shadow(0 0 45px rgba(255,225,165,0));transition:opacity 1.4s,transform 1.9s var(--ease),filter 1.3s;will-change:transform,opacity}
-.final-scene-wrap{position:absolute;inset:0;z-index:9;opacity:0;clip-path:circle(0 at 72% 42%);transition:clip-path 2.2s var(--ease),opacity 1.2s}
+.chang-e-full{position:absolute;z-index:10;right:21%;bottom:2%;height:min(80vh,840px);width:auto;opacity:0;transform:translateY(40px) scale(.94);filter:blur(14px) brightness(.85) saturate(.9) drop-shadow(0 18px 52px rgba(10,18,42,.45));transition:opacity 1.5s,transform 1.9s var(--ease),filter 1.5s;will-change:transform,opacity;pointer-events:none}
+.final-scene-wrap{position:absolute;inset:0;z-index:9;opacity:0;clip-path:circle(0 at 52% 44%);transition:clip-path 2.2s var(--ease),opacity 1.2s}
 .final-scene{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.92) saturate(.92);transform:scale(1.025);transition:transform 3s var(--ease),filter 1.8s}
 .left-veil{position:absolute;z-index:11;left:-2%;top:0;width:52%;height:100%;opacity:0;background:
   linear-gradient(90deg,rgba(4,9,22,.97) 0%,rgba(5,10,24,.91) 62%,rgba(5,10,24,.38) 86%,transparent 100%),
@@ -93,11 +94,13 @@ img{display:block}
 .phase-clouds .cloud-near,.phase-silhouette .cloud-near,.phase-reveal .cloud-near,.phase-title .cloud-near,.phase-complete .cloud-near{opacity:.68;transform:translateX(-16vw) scale(1.04)}
 .phase-silhouette .chang-e-silhouette{opacity:.94;transform:translateY(0) scale(1);filter:blur(0) brightness(.78) drop-shadow(0 12px 48px rgba(255,226,168,.16));animation:charFloat 8.5s ease-in-out infinite alternate}
 .phase-reveal .chang-e-silhouette{opacity:.1;filter:blur(5px) brightness(.4)}
-.phase-reveal .final-scene-wrap{opacity:1;clip-path:circle(42% at 73% 43%)}
+.phase-reveal .chang-e-full{opacity:1;transform:translateY(0) scale(1);filter:blur(0) brightness(1) saturate(1.04) drop-shadow(0 18px 52px rgba(10,18,42,.45));animation:charFloat 8.5s ease-in-out infinite alternate}
+.phase-title .chang-e-full,.phase-complete .chang-e-full{opacity:0;filter:blur(6px) brightness(.8)}
+.phase-reveal .final-scene-wrap{opacity:1;clip-path:circle(42% at 52% 44%)}
 .phase-reveal .left-veil,.phase-title .left-veil,.phase-complete .left-veil{opacity:1}
 .phase-reveal .ribbons,.phase-title .ribbons,.phase-complete .ribbons{opacity:.9;animation:ribbonFloat 10s ease-in-out infinite alternate}
 .phase-reveal .petal-art,.phase-title .petal-art,.phase-complete .petal-art{opacity:.76}
-.phase-title .final-scene-wrap,.phase-complete .final-scene-wrap{opacity:1;clip-path:circle(120% at 73% 43%)}
+.phase-title .final-scene-wrap,.phase-complete .final-scene-wrap{opacity:1;clip-path:circle(120% at 52% 44%)}
 .phase-title .final-scene,.phase-complete .final-scene{transform:scale(1);filter:brightness(1) saturate(1)}
 .phase-title .moon-wrap,.phase-complete .moon-wrap{opacity:0}
 .phase-title .chang-e-silhouette,.phase-complete .chang-e-silhouette{opacity:0}
@@ -128,6 +131,7 @@ body.panel-collapsed .wish-chip{opacity:1;pointer-events:auto}
 @media(max-width:1050px){
   .moon-wrap{left:71%;width:min(48vw,540px)}
   .chang-e-silhouette{right:4%;height:72vh}
+  .chang-e-full{right:14%;height:74vh}
   .title-stage{left:5%;top:15%;width:43vw}
   .ribbons{width:82vw;right:-16%}
   .wish-panel{left:3.5vw}
@@ -136,7 +140,8 @@ body.panel-collapsed .wish-chip{opacity:1;pointer-events:auto}
   .moon-wrap{left:66%;top:11%;width:min(66vw,460px)}
   .cloud-far,.cloud-near{width:170vw}
   .chang-e-silhouette{right:-9%;bottom:10%;height:59vh}
-  .final-scene{object-position:62% center}
+  .chang-e-full{right:-2%;bottom:8%;height:64vh}
+  .final-scene{object-position:56% center}
   .left-veil{width:72%}
   .ribbons{width:112vw;right:-35%;top:30%}
   .petal-art-a{width:130vw;left:-15%}
@@ -171,16 +176,16 @@ body.panel-collapsed .wish-chip{opacity:1;pointer-events:auto}
 .phase-reveal .cloud-near{opacity:.18;transform:translateX(-18vw) scale(1.04)}
 .phase-title .cloud-far,.phase-title .cloud-near,.phase-complete .cloud-far,.phase-complete .cloud-near{opacity:0}
 .phase-reveal .chang-e-silhouette,.phase-title .chang-e-silhouette,.phase-complete .chang-e-silhouette{opacity:0}
-.phase-reveal .ribbons{opacity:.24}
-.phase-title .ribbons{opacity:.13}
-.phase-complete .ribbons{opacity:.07}
+.phase-reveal .ribbons{opacity:.38}
+.phase-title .ribbons{opacity:.22}
+.phase-complete .ribbons{opacity:.14}
 .phase-reveal .petal-art{opacity:.12}
 .phase-title .petal-art{opacity:.09}
 .phase-complete .petal-art{opacity:.035}
 .phase-reveal .left-veil{opacity:.95}
 .phase-title .left-veil{opacity:.76}
 .phase-complete .left-veil{opacity:0}
-.phase-reveal .final-scene-wrap{clip-path:circle(36% at 74% 42%)}
+.phase-reveal .final-scene-wrap{clip-path:circle(36% at 52% 44%)}
 .title-stage{left:7.4%;top:17%;width:min(31vw,450px)}
 .title-reveal{width:min(27vw,390px)}
 .phase-title .title-stage{opacity:1;transform:translateY(0)}
