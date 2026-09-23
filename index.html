@@ -1,23 +1,20 @@
-<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>月满人间 · 中秋贺卡</title><meta name='description' content='月满人间——一张会回应你的中秋贺卡:烟花、流星、萤火与祈愿天灯。'>
-<meta property='og:title' content='月满人间 · 中秋贺卡'><meta property='og:description' content='但愿人长久,千里共婵娟——点亮祈愿灯,把心愿放上天。'><meta name='theme-color' content='#02050d'>
-<link rel='stylesheet' href='style.css'></head><body>
-<canvas id='fx'></canvas><div id='intro'><div class='intro-stars'></div><div class='intro-copy'><span>✦</span><p>今夜，先从一片安静的黑开始</p></div></div>
-<main id='stage'>
-  <div class='bg'></div><div class='moonGlow'></div><div class='mist'></div>
-  <header><div class='brand'>月满人间 <small>MID-AUTUMN</small></div><button id='soundBtn' aria-pressed='false'>♫ 氛围</button></header>
-  <section class='hero'>
-    <div class='copy'><div class='eyebrow'>八月十五 · 团圆夜</div><h1><span>中</span><span>秋</span></h1><h2>但愿人长久，千里共婵娟</h2><p>愿这一轮明月，照见想念，也照亮归途。<br>愿你所念之人，终能共享同一片月色。</p>
-      <button id='wishBtn' class='cta'>点亮祈愿灯 <b>✦</b></button>
-    </div>
-    <div class='card' id='wishCard'><div class='seal' id='seal' title='月印'>月</div><div class='card-title'>中秋安康</div><div class='card-line'></div><p>愿花长好，月长圆，<br>愿人长久，岁岁常相见。</p><div class='signature'>Happy Mid-Autumn Festival</div></div>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>月满人间 · 中秋贺卡</title><meta name="theme-color" content="#050816"><link rel="stylesheet" href="style.css"></head><body>
+<canvas id="fx"></canvas>
+<main id="app" class="p-stars">
+  <section id="scene">
+    <div class="sky"></div><div class="aurora"></div>
+    <div id="moonLayer" class="img-layer moon-layer"></div>
+    <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+    <div id="silLayer" class="img-layer sil-layer"></div>
+    <div id="charLayer" class="img-layer char-layer"></div>
+    <div id="finalLayer" class="img-layer final-layer"></div>
+    <div id="titleShade" class="title-shade"></div>
+    <div class="ribbon r1"></div><div class="ribbon r2"></div><div class="ribbon r3"></div>
+    <div id="petals" class="petals"></div>
+    <div class="mist"></div>
+    <div id="narration" class="narration">今夜，从一片安静的黑开始。</div>
+    <div class="toolbar"><button id="skipBtn">跳过开场</button><button id="replayBtn" class="hidden">重播动画</button></div>
+    <section id="panel" class="panel"><div class="panel-card"><div><b>月下祈愿</b><small>写下一句心愿，让它顺着月光升起。</small></div><div class="wish"><input id="wishInput" maxlength="18" placeholder="愿所念之人，岁岁平安"><button id="wishBtn">放飞天灯</button></div><div class="panel-foot"><button id="moonBtn">轻触明月</button><span>也可以直接点击夜空</span></div></div></section>
+    <div id="lanterns" class="lanterns"></div><div id="tip" class="tip">轻点夜空，星河会回应你</div>
   </section>
-  <div class='lanterns' aria-hidden='true'></div><div class='petals' aria-hidden='true'></div>
-  <div class='wishPanel' id='wishPanel'>
-    <input id='wishInput' maxlength='18' placeholder='写一句心愿，放上天灯…' autocomplete='off'>
-    <button id='launchBtn'>放飞天灯</button>
-    <span class='wishCount' id='wishCount'></span>
-  </div>
-  <div class='toast' id='toast'></div>
-  <footer><div class='poem' id='poem'></div><div class='hint'>移动 · 星河回应 ｜ 点击夜空 · 烟花 ｜ 月印 · 有桂香</div></footer>
-</main>
-<script src='script.js'></script></body></html>
+</main><script src="app.js"></script></body></html>
